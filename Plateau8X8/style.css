@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 320px;
+}
+
+.case {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #000;
+}
+
+.case.blanc {
+    background-color: #fff;
+}
+
+.case.noir {
+    background-color: #000;
+}

@@ -4,19 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>To do list Dym</title>
+    <title>Do it !</title>
 </head>
 <body>
-    <h1>Do It</h1>
-    <form action="ajouter.php" method="post">
-        <input type="text" name="tache" placeholder="Ajouter une tâche">
-        <button type="submit">Ajouter</button>
+    <form action="newtodo.php" method="post">
+    <input type="text" name="tache" placeholder="Enter your todo">
+    <button>New todo</button>
     </form>
+    <?php
+    // Ouvrir le fichier CSV en mode lecture
+    $fichier = fopen('data.csv', 'r');
+
+    // Lire toutes les lignes du fichier CSV
+    $taches = array();
+    while (($ligne = fgetcsv($fichier)) !== false){
+        $taches[] = $ligne[0];
+    }
+    fclose($fichier);
+    ?>
     <ul>
-        <?php
-            require_once"test.php";
-            bonjour()
-        ?>
+        <?php foreach ($taches as $tache): ?>
+            <li><?php echo $tache; ?></li>
+        <?php endforeach; ?>
     </ul>
 </body>
 </html>

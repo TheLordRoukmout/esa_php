@@ -1,7 +1,0 @@
-• index.php: La page principale affichant la liste de tâches.
-• functions.php: Contient les fonctions pour gérer les tâches (ajout, suppression, modification, marquage comme réalisée/non réalisée).
-• add.php: Script pour ajouter une nouvelle tâche.
-• delete.php: Script pour supprimer une tâche.
-• toggle.php: Script pour marquer une tâche comme réalisée/non réalisée.
-• edit.php: Script pour éditer une tâche et formulaire de modification.
-• todos.csv: Fichier CSV pour stocker les tâches.

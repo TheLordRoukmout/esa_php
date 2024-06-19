@@ -20,15 +20,19 @@ $taskCount = countTasks();
     </div>
     <div class="container_todolist">
         <div class="sub_tittle_count">
-            <p>Total des tâches : <?php echo $taskCount['total']; ?></p>
-            <p>Tâches à faire : <?php echo $taskCount['todo']; ?></p>
-            <p>Tâches réalisées : <?php echo $taskCount['done']; ?></p>
+            <div class="content_sub">
+                <p class="compteur_todo"><?php echo $taskCount['total']; ?><br>Total des tâches</p>
+                <p class="compteur_todo"><?php echo $taskCount['todo']; ?><br>Tâches à faire </p>
+                <p class="compteur_todo"><?php echo $taskCount['done']; ?><br>Tâches réalisées</p>
+            </div>
         </div>
         <div class="new_todolist">
-            <form action="add.php" method="post">
-                <input type="text" name="task" required>
-                <button type="submit">Ajouter</button>
-            </form>
+            <div class="content_new_todo">
+                <form action="add.php" method="post">
+                    <input class ="placeNewTodo" placeholder="Entrez votre nouvelle tâche ici" type="text" name="task" required>
+                    <button type="submit" class="btn_add_todo">&#x2795;</button>
+                </form>
+            </div>
         </div> 
         <div class="container_liste_todolist">
             <div class="content_liste_todolist">  

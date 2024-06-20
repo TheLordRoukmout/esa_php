@@ -40,4 +40,8 @@ function countTasks() {
     return $todoCount;
 }
 
+function isPostRequest() {
+    return !empty($_POST);
+}
+
 ?>

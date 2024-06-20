@@ -29,7 +29,7 @@ $taskCount = countTasks();
         <div class="new_todolist">
             <div class="content_new_todo">
                 <form action="add.php" method="post">
-                    <input class ="placeNewTodo" placeholder="Entrez votre nouvelle tâche ici" type="text" name="task" required>
+                    <input class="placeNewTodo" placeholder="Entrez votre nouvelle tâche ici" type="text" name="task" required>
                     <button type="submit" class="btn_add_todo">&#x2795;</button>
                 </form>
             </div>
@@ -38,14 +38,14 @@ $taskCount = countTasks();
             <div class="content_liste_todolist">  
                 <ul>
                     <?php foreach ($todos as $index => $todo): ?>
-                        <li class="list_detail_todo">
-                            <form action="toggle.php" method="post" style="display:inline;">
+                        <li class="list_detail_todo <?php echo $todo['done'] ? 'done' : ''; ?>">
+                            <form action="toggle.php" method="post">
                                 <input type="hidden" name="index" value="<?php echo $index; ?>">
                                 <button class="btn_doNot" type="submit"><?php echo $todo['done'] ? '&#x274C;' : '&#x2705;'; ?></button>
                             </form>
-                            <?php echo $todo['task']; ?>
+                            <p class="echoTask"><?php echo htmlspecialchars($todo['task']); ?></p>
                             <button class="btn_modifier"><a href="edit.php?index=<?php echo $index; ?>">&#x1F4DD;</a></button>
-                            <form action="delete.php" method="post" style="display:inline;">
+                            <form action="delete.php" method="post">
                                 <input type="hidden" name="index" value="<?php echo $index; ?>">
                                 <button class="btn_trash" type="submit">&#128465;&#65039;</button>
                             </form>

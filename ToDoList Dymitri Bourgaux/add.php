@@ -1,6 +1,6 @@
 <?php
 require 'functions.php';
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (isPostRequest()) {
     $todos = getTodos();
     $todos[] = ['task' => $_POST['task'], 'done' => false];
     saveTodos($todos);

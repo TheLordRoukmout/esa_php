@@ -4,7 +4,7 @@ $todos = getTodos();
 $index = $_GET['index'];
 $todo = $todos[$index];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (isPostRequest()) {
     $todos[$index]['task'] = $_POST['task'];
     saveTodos($todos);
     header('Location: index.php');

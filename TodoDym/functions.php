@@ -23,25 +23,20 @@ function saveTodos($todos) {
 
 function countTasks() {
     $todos = getTodos();
-    $todoCount = [
-        'total' => count($todos),
-        'todo' => 0,
-        'done' => 0
-    ];
-
-    foreach ($todos as $todo) {
-        if ($todo['done']) {
-            $todoCount['done']++;
-        } else {
-            $todoCount['todo']++;
-        }
-    }
-
-    return $todoCount;
+    $total = count($todos);
+    $done = count(array_filter($todos, fn($todo) => $todo['done']));
+    $todo = $total - $done;
+    return ['total' => $total, 'done' => $done, 'todo' => $todo];
 }
 
 function isPostRequest() {
-    return !empty($_POST);
+    return $_SERVER['REQUEST_METHOD'] === 'POST';
 }
 
+function sortTodos($todos) {
+    usort($todos, function($a, $b) {
+        return $a['done'] <=> $b['done'];
+    });
+    return $todos;
+}
 ?>

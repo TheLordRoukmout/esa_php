@@ -163,4 +163,57 @@ class RendezVousController extends Controller
 
         return redirect()->route('rendez-vous.index')->with('error', 'Rendez-vous non trouvé.');
     }
+
+        /**
+     * Afficher la page d'attribution des poneys.
+     */
+    public function attribuer($id)
+    {
+        $rendezVous = RendezVous::with(['client', 'poney', 'participants.poney'])->findOrFail($id);
+        $poneys = Poney::all();
+        $clients = Client::all();
+
+        return view('rendez-vous.attribution', compact('rendezVous', 'poneys', 'clients'));
+    }
+
+        /**
+     * Sauvegarder l'attribution des poneys à un rendez-vous.
+     */
+    public function sauvegarderAttribution(Request $request, $id)
+    {
+        $request->validate([
+            'poneys_ids' => 'required|array',
+            'poneys_ids.*' => 'exists:poneys,id',
+            'participants' => 'nullable|array',
+            'participants.*.nom' => 'required|string',
+            'participants.*.poney_id' => 'required|exists:poneys,id',
+        ]);
+
+        $rendezVous = RendezVous::findOrFail($id);
+
+        // Supprime les anciens participants pour éviter les doublons
+        $rendezVous->participants()->delete();
+
+        // Ajoute le client principal comme premier participant
+        \App\Models\Participant::create([
+            'rendez_vous_id' => $rendezVous->id,
+            'nom' => $rendezVous->client->nom, // Le nom du client principal
+            'poney_id' => $request->poneys_ids[0], // Le premier poney choisi
+        ]);
+
+        // Ajoute les autres participants
+        foreach ($request->participants as $participant) {
+            \App\Models\Participant::create([
+                'rendez_vous_id' => $rendezVous->id,
+                'nom' => $participant['nom'],
+                'poney_id' => $participant['poney_id'],
+            ]);
+        }
+
+        return redirect()->route('rendez-vous.index')->with('success', 'Poneys attribués avec succès.');
+    }
+
+
+
+
 }

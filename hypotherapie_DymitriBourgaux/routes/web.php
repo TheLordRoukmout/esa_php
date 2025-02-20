@@ -46,6 +46,12 @@ Route::resource('rendez-vous', RendezVousController::class)->parameters([
 
 
 Route::resource('factures', FactureController::class);
+Route::get('/recettes', [FactureController::class, 'historique'])->name('recettes.index');
+Route::get('/recettes/{mois}', [FactureController::class, 'detailMois'])->name('recettes.detail');
+Route::get('/recettes', [FactureController::class, 'historique'])->name('recettes.index');
+
+
+
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     // Routes réservées aux administrateurs

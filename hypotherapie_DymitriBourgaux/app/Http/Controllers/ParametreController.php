@@ -6,7 +6,9 @@ use App\Models\Parametre;
 use Illuminate\Http\Request;
 
 // controller mis en place mais abandonné lors du développement car il ne me servait a rien
-
+/**
+ * Paramètre est une page qui devra gérer les prix à l'heure, le nombre d'heures que dure un rendez-vous
+ */
 
 class ParametreController extends Controller
 {

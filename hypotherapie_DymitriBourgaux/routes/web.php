@@ -33,7 +33,7 @@ Route::post('/rendez-vous/attribuer/{id}', [RendezVousController::class, 'sauveg
 
 Route::get('/accueil', function () {
     return view('accueil');
-})->name('accueil'); // Ajoute cette ligne
+})->name('accueil');
 
 Route::resource('poneys', PoneyController::class);
 

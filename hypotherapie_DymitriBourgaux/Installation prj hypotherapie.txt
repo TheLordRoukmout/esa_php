@@ -1,0 +1,9 @@
+Type de base de données -> Mariadb;
+
+Attention à bien configurer votre base de données dans le fichier .env
+
+Lancer un "composer install" afin d'installer toutes les dépendances quand vous avez dl le projet dans sa totalité
+
+Dans votre interface de ligne de commande de Mariadb executé cette commande -> CREATE DATABASE hypotherapiedb;
+
+Pour créer la db et les tables lancer un "php artisan migrate:fresh --seed" cela créera la db et les tables.
